@@ -1,0 +1,819 @@
+/* ================================================
+   应用内容样式
+   ================================================ */
+
+/* ---- 窗口内部工具栏/菜单栏（xp-lib.css 没有这些） ---- */
+.xp-menubar {
+  height: 22px; background: #ece9d8;
+  display: flex; align-items: center; padding: 0 4px;
+  border-bottom: 1px solid #a0a0a0; flex-shrink: 0;
+}
+.xp-menu-item {
+  padding: 2px 8px; font-size: 11px; cursor: pointer; border-radius: 2px;
+}
+.xp-menu-item:hover { background: #316ac5; color: #fff; }
+
+.xp-toolbar {
+  height: 30px; background: #ece9d8;
+  display: flex; align-items: center; padding: 0 4px; gap: 4px;
+  border-bottom: 1px solid #a0a0a0; flex-shrink: 0;
+}
+.xp-toolbar-btn {
+  display: flex; align-items: center; gap: 3px;
+  padding: 2px 6px;
+  background: linear-gradient(180deg, #f0ece4 0%, #d8d4cc 100%);
+  border: 1px solid #a0a0a0; border-radius: 2px;
+  font-size: 11px; cursor: pointer; font-family: 'Tahoma', Arial, sans-serif;
+}
+.xp-toolbar-btn:hover { background: linear-gradient(180deg, #fff 0%, #e8e4dc 100%); border-color: #316ac5; }
+.xp-toolbar-sep { width: 1px; height: 20px; background: linear-gradient(180deg, transparent, #a0a0a0, transparent); margin: 0 2px; }
+
+.xp-addressbar {
+  height: 26px; background: #ece9d8;
+  display: flex; align-items: center; padding: 0 6px; gap: 6px;
+  border-bottom: 1px solid #a0a0a0; font-size: 11px; flex-shrink: 0;
+}
+.xp-addressbar-label { color: #333; flex-shrink: 0; }
+.xp-addressbar-input {
+  flex: 1; height: 18px; background: #fff;
+  border: 1px inset #a0a0a0; padding: 0 4px;
+  font-size: 11px; font-family: 'Tahoma', Arial, sans-serif; outline: none;
+}
+
+.xp-statusbar-panel {
+  flex: 1; border: 1px inset #a0a0a0; padding: 0 4px;
+  height: 14px; display: flex; align-items: center; font-size: 11px;
+}
+
+/* ---- 通用 ---- */
+.app-container {
+  padding: 16px;
+  font-family: 'Tahoma', Arial, sans-serif;
+  font-size: 12px;
+  color: #000;
+  height: 100%;
+  overflow: auto;
+}
+
+/* ================================================
+   关于我 — 系统属性风格
+   ================================================ */
+.about-tabs {
+  display: flex;
+  border-bottom: 1px solid #a0a0a0;
+  margin-bottom: -1px;
+}
+
+.about-tab {
+  padding: 4px 16px;
+  border: 1px solid #a0a0a0;
+  border-bottom: none;
+  background: #d4d0c8;
+  cursor: pointer;
+  font-size: 11px;
+  margin-right: 2px;
+  border-radius: 3px 3px 0 0;
+  position: relative;
+  top: 1px;
+}
+
+.about-tab.active {
+  background: #fff;
+  border-bottom-color: #fff;
+  z-index: 1;
+}
+
+.about-tab-content {
+  display: none;
+  border: 1px solid #a0a0a0;
+  padding: 16px;
+  background: #fff;
+}
+
+.about-tab-content.active {
+  display: block;
+}
+
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.about-avatar-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 4px;
+  background: #1a5eb8;
+  border: 2px solid #6ca0dc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.about-avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #003399;
+}
+
+.about-title {
+  font-size: 12px;
+  color: #555;
+  margin-top: 4px;
+}
+
+.about-bio {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #333;
+  margin-top: 8px;
+}
+
+.about-specs {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 12px;
+  font-size: 11px;
+  margin-top: 12px;
+}
+
+.about-spec-label {
+  color: #555;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.about-spec-value {
+  color: #000;
+}
+
+.skill-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 36px;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.skill-bar-bg {
+  height: 12px;
+  background: #d4d0c8;
+  border: 1px inset #a0a0a0;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1a5eb8, #4a90e8);
+  transition: width 1s ease;
+}
+
+.skill-pct {
+  font-size: 10px;
+  color: #555;
+  text-align: right;
+}
+
+/* ================================================
+   我的项目 — 资源管理器风格
+   ================================================ */
+.explorer-layout {
+  display: flex;
+  height: 100%;
+}
+
+.explorer-sidebar {
+  width: 160px;
+  background: #e8f0f8;
+  border-right: 1px solid #a0c0e0;
+  padding: 8px;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+.explorer-sidebar-title {
+  font-size: 10px;
+  font-weight: bold;
+  color: #316ac5;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #b0c8e8;
+  text-transform: uppercase;
+}
+
+.explorer-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.explorer-sidebar-item:hover {
+  background: #c8d8f0;
+}
+
+.explorer-sidebar-item.active {
+  background: #316ac5;
+  color: #fff;
+}
+
+.explorer-main {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.explorer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 8px;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+  background: #fafafa;
+}
+
+.project-card:hover {
+  background: #e8f0f8;
+  border-color: #316ac5;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.project-card-icon {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.project-card-name {
+  font-size: 11px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.project-card-desc {
+  font-size: 10px;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* 项目详情面板 */
+.project-detail {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project-detail-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #003399;
+}
+
+.project-detail-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.project-tag {
+  padding: 2px 8px;
+  background: #316ac5;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 10px;
+}
+
+.project-detail-desc {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #333;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #316ac5;
+  font-size: 11px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+/* ================================================
+   简历 — 文档查看器风格
+   ================================================ */
+.resume-viewer {
+  background: #808080;
+  padding: 20px;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.resume-page {
+  background: #fff;
+  width: 600px;
+  max-width: 100%;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  font-family: 'Times New Roman', serif;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.resume-header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #003399;
+}
+
+.resume-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #003399;
+  letter-spacing: 2px;
+}
+
+.resume-contact {
+  font-size: 11px;
+  color: #555;
+  margin-top: 6px;
+}
+
+.resume-section {
+  margin-bottom: 16px;
+}
+
+.resume-section-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #003399;
+  border-bottom: 1px solid #003399;
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.resume-entry {
+  margin-bottom: 10px;
+}
+
+.resume-entry-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.resume-entry-sub {
+  font-style: italic;
+  color: #555;
+  font-size: 11px;
+}
+
+.resume-entry-desc {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #333;
+}
+
+.resume-entry-desc ul {
+  padding-left: 16px;
+  margin-top: 4px;
+}
+
+.resume-skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.resume-skill-chip {
+  padding: 2px 8px;
+  background: #e8f0f8;
+  border: 1px solid #b0c8e8;
+  border-radius: 3px;
+  font-size: 10px;
+  font-family: var(--xp-font);
+}
+
+/* ================================================
+   联系方式 — Outlook Express 风格
+   ================================================ */
+.contact-outlook {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.contact-toolbar {
+  height: 50px;
+  background: #d4d0c8;
+  border-bottom: 1px solid #a0a0a0;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  gap: 8px;
+}
+
+.contact-tool-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 8px;
+  background: linear-gradient(180deg, #f0ece4 0%, #d8d4cc 100%);
+  border: 1px solid #a0a0a0;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.contact-tool-btn:hover {
+  background: linear-gradient(180deg, #fff 0%, #e8e4dc 100%);
+  border-color: #316ac5;
+}
+
+.contact-tool-btn .btn-icon {
+  font-size: 20px;
+}
+
+.contact-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.contact-folders {
+  width: 160px;
+  background: #e8f0f8;
+  border-right: 1px solid #a0c0e0;
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+.contact-folder-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #316ac5;
+  margin-bottom: 8px;
+}
+
+.contact-folder-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.contact-folder-item:hover {
+  background: #c8d8f0;
+}
+
+.contact-folder-item.active {
+  background: #316ac5;
+  color: #fff;
+}
+
+.contact-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-info-panel {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.contact-info-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #003399;
+  margin-bottom: 16px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-item-icon {
+  font-size: 24px;
+  width: 36px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.contact-item-label {
+  font-size: 10px;
+  color: #888;
+  margin-bottom: 2px;
+}
+
+.contact-item-value {
+  font-size: 12px;
+  color: #000;
+}
+
+.contact-item-value a {
+  color: #316ac5;
+  text-decoration: none;
+}
+
+.contact-item-value a:hover {
+  text-decoration: underline;
+}
+
+/* ================================================
+   音乐播放器 — Windows Media Player 风格
+   ================================================ */
+.music-player {
+  background: #1a1a2e;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.music-visualizer {
+  height: 80px;
+  background: #000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  padding: 4px 8px;
+  overflow: hidden;
+}
+
+.viz-bar {
+  width: 6px;
+  background: linear-gradient(180deg, #00aaff, #0044cc);
+  border-radius: 2px 2px 0 0;
+  transition: height 0.1s;
+}
+
+.music-track-info {
+  padding: 10px 14px 6px;
+  background: #0d0d1e;
+}
+
+.music-track-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-track-artist {
+  font-size: 11px;
+  color: #8ab4ff;
+  margin-top: 2px;
+}
+
+.music-progress-wrap {
+  padding: 6px 14px;
+  background: #0d0d1e;
+}
+
+.music-progress-bar {
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.music-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0088ff, #00ccff);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.5s linear;
+}
+
+.music-time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.music-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: #0d0d1e;
+}
+
+.music-btn {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  border-radius: 50%;
+  transition: color 0.15s, background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.music-btn:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+
+.music-btn.play-btn {
+  font-size: 22px;
+  color: #00aaff;
+  width: 40px;
+  height: 40px;
+}
+
+.music-btn.play-btn:hover {
+  color: #44ccff;
+  background: rgba(0,170,255,0.15);
+}
+
+.music-volume-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px 8px;
+  background: #0d0d1e;
+}
+
+.music-volume-icon {
+  font-size: 13px;
+  color: #888;
+}
+
+.music-volume-bar {
+  flex: 1;
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.music-volume-fill {
+  height: 100%;
+  background: #0088ff;
+  border-radius: 2px;
+  width: 70%;
+}
+
+.music-playlist {
+  flex: 1;
+  overflow-y: auto;
+  background: #111122;
+  border-top: 1px solid #333;
+}
+
+.music-playlist-header {
+  display: flex;
+  padding: 6px 10px;
+  font-size: 10px;
+  color: #666;
+  border-bottom: 1px solid #222;
+  background: #0a0a18;
+}
+
+.music-playlist-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  gap: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid #1a1a2e;
+  transition: background 0.1s;
+}
+
+.music-playlist-item:hover {
+  background: #1e1e3a;
+}
+
+.music-playlist-item.playing {
+  background: #0d2a5e;
+  border-left: 3px solid #0088ff;
+}
+
+.music-playlist-num {
+  font-size: 10px;
+  color: #555;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.music-playlist-item.playing .music-playlist-num {
+  color: #0088ff;
+}
+
+.music-playlist-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.music-playlist-name {
+  font-size: 11px;
+  color: #ccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-playlist-item.playing .music-playlist-name {
+  color: #44aaff;
+}
+
+.music-playlist-artist {
+  font-size: 10px;
+  color: #666;
+}
+
+.music-playlist-duration {
+  font-size: 10px;
+  color: #555;
+  flex-shrink: 0;
+}
+
+.music-playlist::-webkit-scrollbar {
+  width: 6px;
+}
+
+.music-playlist::-webkit-scrollbar-track {
+  background: #0a0a18;
+}
+
+.music-playlist::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}

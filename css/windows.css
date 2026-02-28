@@ -1,0 +1,55 @@
+/* windows.css — 窗口定位、动画、覆盖 xp-lib.css 的必要样式 */
+
+/* 窗口容器 */
+#windows-container { position: absolute; inset: 0; pointer-events: none; }
+
+/* 窗口本体 */
+.window {
+  position: absolute !important;
+  pointer-events: all;
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 280px;
+  min-height: 180px;
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.5) !important;
+}
+
+/* 活动窗口阴影更强 */
+.window.active-window {
+  box-shadow: 4px 4px 16px rgba(0,0,0,0.65) !important;
+}
+
+/* 标题栏非活动状态 */
+.title-bar.inactive {
+  background: linear-gradient(180deg, #7a96df 0%, #3a6bc7 8%, #3a6bc7 88%) !important;
+}
+
+/* 窗口内容区 */
+.window-body {
+  flex: 1 !important;
+  overflow: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative;
+}
+
+/* 最小化/还原动画 */
+@keyframes minimizeAnim {
+  from { transform: scale(1); opacity: 1; }
+  to   { transform: scale(0.1) translateY(400px); opacity: 0; }
+}
+@keyframes restoreAnim {
+  from { transform: scale(0.1) translateY(400px); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.minimizing { animation: minimizeAnim 0.2s ease-in forwards; }
+.restoring  { animation: restoreAnim  0.2s ease-out forwards; }
+
+/* 调整大小手柄 */
+.win-resize {
+  position: absolute; right: 0; bottom: 0;
+  width: 16px; height: 16px;
+  cursor: se-resize;
+  background: linear-gradient(135deg, transparent 50%, #a0a0a0 50%);
+  z-index: 10;
+}

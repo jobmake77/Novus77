@@ -1,0 +1,274 @@
+/* xp.css — 自定义样式（覆盖 xp-lib.css，添加桌面/任务栏/启动屏） */
+
+/* ── 基础重置 ── */
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  margin: 0; padding: 0;
+  font-family: 'Tahoma', Arial, sans-serif;
+  font-size: 11px;
+  user-select: none;
+}
+
+/* ── 过渡动画 ── */
+.fade-out { animation: fadeOut 0.4s ease forwards; }
+.fade-in  { animation: fadeIn  0.4s ease forwards; }
+@keyframes fadeOut { to { opacity: 0; } }
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+
+/* ══════════════════════════════════════════
+   启动屏幕
+══════════════════════════════════════════ */
+#boot-screen {
+  position: fixed; inset: 0;
+  background: #000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 9999;
+}
+.boot-logo { display: flex; align-items: center; gap: 18px; margin-bottom: 52px; }
+.boot-windows-logo {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+  width: 56px; height: 56px;
+}
+.logo-quad { border-radius: 2px; }
+.logo-quad.red    { background: #f25022; }
+.logo-quad.green  { background: #7fba00; }
+.logo-quad.blue   { background: #00a4ef; }
+.logo-quad.yellow { background: #ffb900; }
+.boot-text { display: flex; flex-direction: column; line-height: 1.1; }
+.boot-title-thin {
+  color: #fff; font-size: 15px; font-weight: 300;
+  letter-spacing: 4px; font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+}
+.boot-title-bold {
+  color: #fff; font-size: 38px; font-weight: 700;
+  font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+}
+.boot-xp { color: #ff7b00; font-style: italic; margin-left: 4px; }
+.boot-edition { color: #888; font-size: 11px; letter-spacing: 2px; margin-top: 3px; }
+.boot-progress-container { width: 200px; }
+.boot-progress-bar {
+  height: 12px; border: 1px solid #333; border-radius: 2px;
+  overflow: hidden; background: #111;
+}
+.boot-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(180deg, #3c8cf8 0%, #1b5bca 50%, #2e7cf6 100%);
+  animation: bootProgress 3s linear forwards;
+}
+@keyframes bootProgress {
+  0%{width:0%} 30%{width:35%} 60%{width:65%} 80%{width:82%} 100%{width:100%}
+}
+.boot-copyright {
+  position: fixed; bottom: 24px;
+  color: #444; font-size: 10px; letter-spacing: 1px;
+}
+
+/* ══════════════════════════════════════════
+   登录屏幕
+══════════════════════════════════════════ */
+#login-screen {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column;
+  background: #1e4d8c; z-index: 9998;
+}
+.login-header {
+  height: 96px;
+  background: linear-gradient(180deg, #3a6dc4 0%, #1e4d8c 100%);
+  border-bottom: 3px solid #0831a0;
+  display: flex; align-items: center; justify-content: center;
+}
+.login-header-center {
+  color: #fff; font-size: 28px; font-weight: bold;
+  font-family: 'Franklin Gothic Medium', Arial, sans-serif; letter-spacing: 2px;
+}
+.login-body {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 28px;
+}
+.login-instruction { color: #fff; font-size: 13px; opacity: 0.9; }
+.login-user {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 24px; border-radius: 4px; cursor: pointer;
+  transition: background 0.15s;
+}
+.login-user:hover { background: rgba(255,255,255,0.15); }
+.login-avatar {
+  width: 64px; height: 64px; border-radius: 50%;
+  border: 3px solid #fff; overflow: hidden;
+  background: #3a7bd5; display: flex; align-items: center;
+  justify-content: center; position: relative;
+}
+.login-avatar img { width: 100%; height: 100%; object-fit: cover; position: absolute; }
+.avatar-letter { color: #fff; font-size: 28px; font-weight: bold; z-index: 1; }
+.login-username { color: #fff; font-size: 16px; font-weight: bold; }
+.login-user-sub { color: rgba(255,255,255,0.7); font-size: 11px; margin-top: 2px; }
+.login-footer {
+  height: 52px;
+  background: linear-gradient(180deg, #2a5dac 0%, #1e4d8c 100%);
+  border-top: 3px solid #0831a0;
+  display: flex; align-items: center; padding: 0 24px;
+}
+.login-footer-btn {
+  display: flex; align-items: center; gap: 8px;
+  color: #fff; font-size: 12px; cursor: pointer;
+  padding: 4px 10px; border-radius: 3px; transition: background 0.15s;
+}
+.login-footer-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* ══════════════════════════════════════════
+   桌面 — Bliss 壁纸（CSS 近似）
+══════════════════════════════════════════ */
+#desktop {
+  position: fixed; inset: 0; bottom: 30px;
+  background:
+    url('../assets/images/windows XP.jpg') center/cover no-repeat,
+    radial-gradient(ellipse 180% 70% at 50% 108%, #3d7a1e 0%, #5aaa2a 22%, #7ac840 38%, transparent 55%),
+    linear-gradient(180deg, #1a5fa0 0%, #3a8fd0 22%, #6ab8e8 48%, #a8d8f0 68%, #c8eaf8 82%, #d8f0f8 100%);
+  overflow: hidden;
+}
+
+/* ── 桌面图标 ── */
+.desktop-icons {
+  position: absolute; top: 10px; left: 10px;
+  display: flex; flex-direction: column; gap: 6px; z-index: 1;
+}
+.desktop-icon {
+  display: flex; flex-direction: column; align-items: center;
+  width: 72px; padding: 4px 2px; border-radius: 2px; cursor: pointer;
+}
+.desktop-icon img { width: 32px; height: 32px; image-rendering: pixelated; }
+.desktop-icon .icon-emoji { font-size: 32px; line-height: 1; }
+.desktop-icon span {
+  color: #fff; font-size: 11px; text-align: center; margin-top: 2px;
+  text-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
+  word-break: break-word; width: 100%;
+}
+.desktop-icon.selected { background: rgba(49,106,197,0.5); outline: 1px dashed rgba(255,255,255,0.8); }
+.desktop-icon:hover { background: rgba(49,106,197,0.3); }
+
+/* ══════════════════════════════════════════
+   任务栏
+══════════════════════════════════════════ */
+#taskbar {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 30px;
+  background: linear-gradient(180deg,
+    #245edb 0%, #1e52cc 3%, #2060d8 6%,
+    #2060d8 90%, #1a48c0 96%, #1a48c0 100%);
+  border-top: 1px solid #3a7fff;
+  display: flex; align-items: center; gap: 2px; padding: 0 2px;
+  z-index: 5000; box-shadow: 0 -1px 0 #0a2a90;
+}
+.start-btn {
+  height: 26px; padding: 0 12px 0 8px; min-width: 84px;
+  background: linear-gradient(180deg,
+    #5cc157 0%, #34a330 8%, #27962a 50%, #229120 88%, #0b6f0f 100%);
+  border: none; border-radius: 0 12px 12px 0;
+  color: #fff; font-size: 13px; font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Trebuchet MS', Arial, sans-serif;
+  cursor: pointer; display: flex; align-items: center; gap: 6px;
+  box-shadow: 1px 0 3px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.4);
+  letter-spacing: 0.5px; margin-left: 2px;
+}
+.start-btn:hover {
+  background: linear-gradient(180deg,
+    #6dd668 0%, #45b340 8%, #38a63a 50%, #33a130 88%, #1c7f20 100%);
+}
+.start-btn:active {
+  background: linear-gradient(180deg, #1f7a22 0%, #229120 50%, #5cc157 100%);
+}
+.start-logo { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; width: 16px; height: 16px; }
+.s-quad { border-radius: 1px; }
+.s-quad.red    { background: #f25022; }
+.s-quad.green  { background: #7fba00; }
+.s-quad.blue   { background: #00a4ef; }
+.s-quad.yellow { background: #ffb900; }
+.taskbar-sep { width: 1px; height: 20px; background: linear-gradient(180deg,#0a2a90,#3a7fff,#0a2a90); margin: 0 2px; }
+#taskbar-buttons { flex: 1; display: flex; align-items: center; gap: 3px; overflow: hidden; height: 100%; padding: 2px 0; }
+.taskbar-btn {
+  height: 22px; min-width: 120px; max-width: 160px; padding: 0 8px;
+  background: linear-gradient(180deg, #3270cd 0%, #2060be 40%, #1a52b4 100%);
+  border: 1px solid #0a2a80; border-radius: 2px; color: #fff;
+  font-size: 11px; font-family: 'Tahoma', Arial, sans-serif;
+  cursor: pointer; text-align: left; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap;
+  display: flex; align-items: center; gap: 4px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.taskbar-btn:hover { background: linear-gradient(180deg, #4a85e0 0%, #3270d0 40%, #2a62c8 100%); }
+.taskbar-btn.active-task {
+  background: linear-gradient(180deg, #1a3ea0 0%, #2050b8 40%, #1c44a8 100%);
+  border-color: #000d40;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.4), inset 0 1px 0 rgba(0,0,0,0.2);
+}
+.taskbar-tray {
+  display: flex; align-items: center; gap: 4px; height: 100%;
+  background: linear-gradient(180deg, #1040a8 0%, #1848b8 50%, #1040a8 100%);
+  border-left: 1px solid #0030a0; padding: 0 8px;
+}
+.tray-icon { font-size: 14px; cursor: default; }
+.tray-clock { color: #fff; font-size: 11px; text-align: right; line-height: 1.3; min-width: 60px; }
+
+/* ══════════════════════════════════════════
+   开始菜单
+══════════════════════════════════════════ */
+#start-menu {
+  position: fixed; bottom: 30px; left: 2px; width: 380px;
+  background: #fff; border-radius: 8px 8px 0 0;
+  box-shadow: 3px -3px 12px rgba(0,0,0,0.5);
+  z-index: 6000; overflow: hidden; border: 1px solid #0040cc;
+}
+.sm-header {
+  background: linear-gradient(90deg, #1e52cc 0%, #2a6ae0 40%, #1e52cc 100%);
+  padding: 8px 12px; display: flex; align-items: center; gap: 10px; min-height: 54px;
+}
+.sm-avatar {
+  width: 40px; height: 40px; border-radius: 4px;
+  border: 2px solid rgba(255,255,255,0.5); background: #3a7bd5;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: bold; color: #fff;
+}
+.sm-username { color: #fff; font-size: 13px; font-weight: bold; }
+.sm-body { display: flex; height: 320px; }
+.sm-left { flex: 1; padding: 6px 0; border-right: 1px solid #e0e0e0; overflow-y: auto; }
+.sm-right { width: 160px; background: #d9e8ff; padding: 6px 0; }
+.sm-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 5px 12px; cursor: pointer; border-radius: 2px; margin: 0 2px;
+}
+.sm-item:hover { background: #316ac5; color: #fff; }
+.sm-item:hover .sm-label { color: #fff; }
+.sm-pinned .sm-icon { font-size: 22px; }
+.sm-icon { font-size: 16px; width: 24px; text-align: center; flex-shrink: 0; }
+.sm-label { font-size: 12px; font-weight: bold; color: #000; }
+.sm-divider { height: 1px; background: #d0d0d0; margin: 4px 8px; }
+.sm-right-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 10px; font-size: 11px; color: #000080;
+  cursor: pointer; border-radius: 2px; margin: 0 2px;
+}
+.sm-right-item:hover { background: #316ac5; color: #fff; }
+.sm-right-divider { height: 1px; background: rgba(0,0,128,0.2); margin: 4px 8px; }
+.sm-footer {
+  background: linear-gradient(90deg, #1e52cc 0%, #2a6ae0 100%);
+  padding: 4px 10px; display: flex; justify-content: flex-end;
+  border-top: 1px solid #0040cc;
+}
+.sm-footer-btn {
+  display: flex; align-items: center; gap: 6px;
+  color: #fff; font-size: 11px; cursor: pointer;
+  padding: 3px 10px; border-radius: 3px;
+  background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.2);
+}
+.sm-footer-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* ══════════════════════════════════════════
+   关机屏幕
+══════════════════════════════════════════ */
+#shutdown-screen {
+  position: fixed; inset: 0; background: #000;
+  display: flex; align-items: center; justify-content: center; z-index: 9999;
+}
+.shutdown-content { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.shutdown-text { color: #aaa; font-size: 14px; letter-spacing: 1px; }

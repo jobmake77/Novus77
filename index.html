@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novus77 — Windows XP</title>
+  <!-- XP.css 官方库 -->
+  <link rel="stylesheet" href="https://unpkg.com/xp.css@0.2.3/dist/XP.css" />
+  <link rel="stylesheet" href="css/xp-lib.css" />
+  <!-- 自定义样式（覆盖库，添加桌面/任务栏/启动屏） -->
+  <link rel="stylesheet" href="css/xp.css" />
+  <link rel="stylesheet" href="css/windows.css" />
+  <link rel="stylesheet" href="css/apps.css" />
+</head>
+<body>
+
+  <!-- ========== 启动屏幕 ========== -->
+  <div id="boot-screen">
+    <div class="boot-logo">
+      <div class="boot-windows-logo">
+        <div class="logo-quad red"></div>
+        <div class="logo-quad green"></div>
+        <div class="logo-quad blue"></div>
+        <div class="logo-quad yellow"></div>
+      </div>
+      <div class="boot-text">
+        <span class="boot-title-thin">Microsoft</span>
+        <span class="boot-title-bold">Windows<span class="boot-xp">XP</span></span>
+        <span class="boot-edition">Professional</span>
+      </div>
+    </div>
+    <div class="boot-progress-container">
+      <div class="boot-progress-bar">
+        <div class="boot-progress-fill"></div>
+      </div>
+    </div>
+    <div class="boot-copyright">Copyright © Microsoft Corporation</div>
+  </div>
+
+  <!-- ========== 登录屏幕 ========== -->
+  <div id="login-screen" style="display:none;">
+    <div class="login-header">
+      <div class="login-header-center"><span>欢迎使用</span></div>
+    </div>
+    <div class="login-body">
+      <div class="login-instruction">请选择您的用户帐户开始使用</div>
+      <div class="login-users">
+        <div class="login-user" id="login-btn">
+          <div class="login-avatar">
+            <img src="assets/images/avatar.png" alt="Novus77"
+              onerror="this.style.display='none'" />
+            <span class="avatar-letter">N</span>
+          </div>
+          <div class="login-user-info">
+            <div class="login-username">Novus77</div>
+            <div class="login-user-sub">个人网站</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="login-footer">
+      <div class="login-footer-btn" onclick="handleShutdown()">
+        <span>⏻</span> 关闭计算机
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 桌面 ========== -->
+  <div id="desktop" style="display:none;">
+
+    <!-- 桌面图标 -->
+    <div class="desktop-icons">
+      <div class="desktop-icon" ondblclick="openWindow('about')">
+        <img src="assets/icons/mycomputer.png" alt="关于我" />
+        <span>关于我</span>
+      </div>
+      <div class="desktop-icon" ondblclick="openWindow('projects')">
+        <img src="assets/icons/folder.png" alt="我的项目" />
+        <span>我的项目</span>
+      </div>
+      <div class="desktop-icon" ondblclick="openWindow('resume')">
+        <img src="assets/icons/document.png" alt="简历" />
+        <span>简历</span>
+      </div>
+      <div class="desktop-icon" ondblclick="openWindow('contact')">
+        <img src="assets/icons/mail.png" alt="联系方式" />
+        <span>联系方式</span>
+      </div>
+      <div class="desktop-icon" ondblclick="openWindow('music')">
+        <img src="assets/icons/music.png" alt="音乐播放器" />
+        <span>音乐播放器</span>
+      </div>
+      <div class="desktop-icon" ondblclick="openWindow('recycle')">
+        <img src="assets/icons/recycle.png" alt="回收站" />
+        <span>回收站</span>
+      </div>
+    </div>
+
+    <!-- 窗口容器 -->
+    <div id="windows-container"></div>
+
+    <!-- 任务栏 -->
+    <div id="taskbar">
+      <button class="start-btn" id="start-btn" onclick="toggleStartMenu()">
+        <div class="start-logo">
+          <div class="s-quad red"></div><div class="s-quad green"></div>
+          <div class="s-quad blue"></div><div class="s-quad yellow"></div>
+        </div>
+        <span>开始</span>
+      </button>
+      <div class="taskbar-sep"></div>
+      <div id="taskbar-buttons"></div>
+      <div class="taskbar-tray">
+        <span class="tray-icon" title="网络">🌐</span>
+        <span class="tray-icon" title="音量">🔊</span>
+        <div class="tray-clock" id="tray-clock"></div>
+      </div>
+    </div>
+
+    <!-- 开始菜单 -->
+    <div id="start-menu" style="display:none;">
+      <div class="sm-header">
+        <div class="sm-avatar">N</div>
+        <span class="sm-username">Novus77</span>
+      </div>
+      <div class="sm-body">
+        <div class="sm-left">
+          <div class="sm-item sm-pinned" onclick="openWindow('about');toggleStartMenu()">
+            <span class="sm-icon">🖥️</span>
+            <span class="sm-label">关于我</span>
+          </div>
+          <div class="sm-item sm-pinned" onclick="openWindow('projects');toggleStartMenu()">
+            <span class="sm-icon">📁</span>
+            <span class="sm-label">我的项目</span>
+          </div>
+          <div class="sm-item sm-pinned" onclick="openWindow('music');toggleStartMenu()">
+            <span class="sm-icon">🎵</span>
+            <span class="sm-label">音乐播放器</span>
+          </div>
+          <div class="sm-divider"></div>
+          <div class="sm-item" onclick="openWindow('resume');toggleStartMenu()">
+            <span class="sm-icon">📄</span>
+            <span class="sm-label">简历</span>
+          </div>
+          <div class="sm-item" onclick="openWindow('contact');toggleStartMenu()">
+            <span class="sm-icon">✉️</span>
+            <span class="sm-label">联系方式</span>
+          </div>
+        </div>
+        <div class="sm-right">
+          <div class="sm-right-item"><span>📁</span> 我的文档</div>
+          <div class="sm-right-item"><span>🖼️</span> 我的图片</div>
+          <div class="sm-right-item"><span>🎵</span> 我的音乐</div>
+          <div class="sm-right-divider"></div>
+          <div class="sm-right-item" onclick="handleShutdown()"><span>⚙️</span> 控制面板</div>
+        </div>
+      </div>
+      <div class="sm-footer">
+        <div class="sm-footer-btn" onclick="handleShutdown()">
+          <span>⏻</span> 关闭计算机
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ========== 关机屏幕 ========== -->
+  <div id="shutdown-screen" style="display:none;">
+    <div class="shutdown-content">
+      <div class="boot-windows-logo" style="width:48px;height:48px;opacity:0.5;">
+        <div class="logo-quad red"></div><div class="logo-quad green"></div>
+        <div class="logo-quad blue"></div><div class="logo-quad yellow"></div>
+      </div>
+      <div class="shutdown-text">正在关机，请稍候...</div>
+    </div>
+  </div>
+
+  <script src="js/clock.js"></script>
+  <script src="js/boot.js"></script>
+  <script src="js/windows.js"></script>
+  <script src="js/apps.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
