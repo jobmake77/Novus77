@@ -7,22 +7,22 @@ const MusicPlayer = (function () {
      ================================================ */
   const playlist = [
     {
-      title:    '示例曲目 1',
-      artist:   'Artist Name',
-      src:      'assets/music/track1.mp3',
-      duration: '3:42',
+      title:    'Treehouse',
+      artist:   'Beakers',
+      src:      'assets/music/Beakers - Treehouse.mp3',
+      duration: '?',
     },
     {
-      title:    '示例曲目 2',
-      artist:   'Artist Name',
-      src:      'assets/music/track2.mp3',
-      duration: '4:15',
+      title:    'Luv (Sic)',
+      artist:   'Nujabes',
+      src:      'assets/music/Nujabes_-_Luv_(Sic).flac',
+      duration: '4:46',
     },
     {
-      title:    '示例曲目 3',
-      artist:   'Artist Name',
-      src:      'assets/music/track3.mp3',
-      duration: '2:58',
+      title:    'Luv(sic.) Part 3 (feat. Shing02)',
+      artist:   'Nujabes, Shing02',
+      src:      'assets/music/Nujabes;_Shing02_-_Luv(sic.)_Part_3_(feat._Shing02).flac',
+      duration: '5:36',
     },
   ];
 
