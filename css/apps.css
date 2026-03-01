@@ -636,19 +636,43 @@
 }
 
 .music-progress-bar {
-  height: 4px;
-  background: #333;
-  border-radius: 2px;
+  height: 14px;
+  display: flex;
+  align-items: center;
   cursor: pointer;
   position: relative;
 }
 
+.music-progress-bar::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+}
+
 .music-progress-fill {
-  height: 100%;
+  position: absolute;
+  left: 0;
+  height: 4px;
   background: linear-gradient(90deg, #0088ff, #00ccff);
   border-radius: 2px;
   width: 0%;
-  transition: width 0.5s linear;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+.music-progress-thumb {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #00ccff;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  left: 0%;
+  pointer-events: none;
+  box-shadow: 0 0 4px rgba(0,200,255,0.6);
 }
 
 .music-time {
@@ -716,18 +740,41 @@
 
 .music-volume-bar {
   flex: 1;
-  height: 4px;
-  background: #333;
-  border-radius: 2px;
+  height: 14px;
+  display: flex;
+  align-items: center;
   cursor: pointer;
   position: relative;
 }
 
+.music-volume-bar::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+}
+
 .music-volume-fill {
-  height: 100%;
+  position: absolute;
+  left: 0;
+  height: 4px;
   background: #0088ff;
   border-radius: 2px;
   width: 70%;
+  pointer-events: none;
+}
+
+.music-volume-thumb {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #0088ff;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  left: 70%;
+  pointer-events: none;
 }
 
 .music-playlist {

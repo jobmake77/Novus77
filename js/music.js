@@ -61,8 +61,9 @@ const MusicPlayer = (function () {
 
         <!-- 进度条 -->
         <div class="music-progress-wrap">
-          <div class="music-progress-bar" id="mp-progress-bar" onclick="MusicPlayer.seek(event)">
+          <div class="music-progress-bar" id="mp-progress-bar">
             <div class="music-progress-fill" id="mp-progress"></div>
+            <div class="music-progress-thumb" id="mp-progress-thumb"></div>
           </div>
           <div class="music-time">
             <span id="mp-current">0:00</span>
@@ -82,8 +83,9 @@ const MusicPlayer = (function () {
         <!-- 音量 -->
         <div class="music-volume-wrap">
           <span class="music-volume-icon">🔈</span>
-          <div class="music-volume-bar" onclick="MusicPlayer.setVolume(event)">
+          <div class="music-volume-bar" id="mp-vol-bar">
             <div class="music-volume-fill" id="mp-vol-fill"></div>
+            <div class="music-volume-thumb" id="mp-vol-thumb"></div>
           </div>
           <span class="music-volume-icon">🔊</span>
         </div>
@@ -125,6 +127,55 @@ const MusicPlayer = (function () {
     audio.addEventListener('ended',      () => next());
     audio.volume = 0.7;
     setTrack(currentIndex, false);
+    initProgressDrag();
+    initVolumeDrag();
+  }
+
+  /* ---- 进度条拖拽 ---- */
+  function initProgressDrag() {
+    const bar = document.getElementById('mp-progress-bar');
+    if (!bar) return;
+    let dragging = false;
+
+    function applySeek(e) {
+      if (!audio.duration) return;
+      const rect = bar.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      audio.currentTime = pct * audio.duration;
+      updateProgressUI(pct * 100);
+    }
+
+    bar.addEventListener('mousedown', e => { dragging = true; applySeek(e); });
+    document.addEventListener('mousemove', e => { if (dragging) applySeek(e); });
+    document.addEventListener('mouseup', () => { dragging = false; });
+  }
+
+  /* ---- 音量条拖拽 ---- */
+  function initVolumeDrag() {
+    const bar = document.getElementById('mp-vol-bar');
+    if (!bar) return;
+    let dragging = false;
+
+    function applyVolume(e) {
+      const rect = bar.getBoundingClientRect();
+      const vol = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      audio.volume = vol;
+      updateVolumeUI(vol * 100);
+    }
+
+    bar.addEventListener('mousedown', e => { dragging = true; applyVolume(e); });
+    document.addEventListener('mousemove', e => { if (dragging) applyVolume(e); });
+    document.addEventListener('mouseup', () => { dragging = false; });
+
+    // 初始显示
+    updateVolumeUI(70);
+  }
+
+  function updateVolumeUI(pct) {
+    const fill  = document.getElementById('mp-vol-fill');
+    const thumb = document.getElementById('mp-vol-thumb');
+    if (fill)  fill.style.width = pct + '%';
+    if (thumb) thumb.style.left = pct + '%';
   }
 
   /* ---- 设置曲目 ---- */
@@ -197,11 +248,16 @@ const MusicPlayer = (function () {
   function updateProgress() {
     if (!audio.duration) return;
     const pct = (audio.currentTime / audio.duration) * 100;
-    const fill = document.getElementById('mp-progress');
-    if (fill) fill.style.width = pct + '%';
-
+    updateProgressUI(pct);
     const cur = document.getElementById('mp-current');
     if (cur) cur.textContent = formatTime(audio.currentTime);
+  }
+
+  function updateProgressUI(pct) {
+    const fill  = document.getElementById('mp-progress');
+    const thumb = document.getElementById('mp-progress-thumb');
+    if (fill)  fill.style.width = pct + '%';
+    if (thumb) thumb.style.left = pct + '%';
   }
 
   function seek(e) {
@@ -219,13 +275,12 @@ const MusicPlayer = (function () {
 
   /* ---- 音量 ---- */
   function setVolume(e) {
-    const bar = document.getElementById('mp-vol-fill')?.parentElement;
+    const bar = document.getElementById('mp-vol-bar');
     if (!bar) return;
     const rect = bar.getBoundingClientRect();
     const vol  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
     audio.volume = vol;
-    const fill = document.getElementById('mp-vol-fill');
-    if (fill) fill.style.width = (vol * 100) + '%';
+    updateVolumeUI(vol * 100);
   }
 
   /* ---- 随机 / 循环 ---- */
