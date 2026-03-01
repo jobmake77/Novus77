@@ -136,10 +136,10 @@ html, body {
 }
 .desktop-icon {
   display: flex; flex-direction: column; align-items: center;
-  width: 80px; padding: 4px 2px; border-radius: 2px; cursor: pointer;
+  width: 90px; padding: 6px 4px; border-radius: 2px; cursor: pointer;
 }
-.desktop-icon img { width: 48px; height: 48px; image-rendering: auto; }
-.desktop-icon .icon-emoji { font-size: 48px; line-height: 1; }
+.desktop-icon img { width: 64px; height: 64px; image-rendering: auto; }
+.desktop-icon .icon-emoji { font-size: 64px; line-height: 1; }
 .desktop-icon span {
   color: #fff; font-size: 11px; text-align: center; margin-top: 2px;
   text-shadow: 1px 1px 2px #000, -1px -1px 2px #000;
