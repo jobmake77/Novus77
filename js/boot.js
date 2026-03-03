@@ -3,6 +3,10 @@
   const BOOT_DURATION  = 3000;  // 启动动画时长 ms
   const LOGIN_DURATION = 500;   // 淡入登录屏幕
 
+  // 预加载壁纸
+  const wallpaper = new Image();
+  wallpaper.src = 'assets/images/windows XP.jpg';
+
   function showLogin() {
     const boot  = document.getElementById('boot-screen');
     const login = document.getElementById('login-screen');
@@ -19,12 +23,22 @@
     const login   = document.getElementById('login-screen');
     const desktop = document.getElementById('desktop');
 
-    login.classList.add('fade-out');
-    setTimeout(() => {
-      login.style.display = 'none';
-      desktop.style.display = 'block';
-      desktop.classList.add('fade-in');
-    }, 400);
+    function doShow() {
+      login.classList.add('fade-out');
+      setTimeout(() => {
+        login.style.display = 'none';
+        desktop.style.display = 'block';
+        desktop.classList.add('fade-in');
+      }, 400);
+    }
+
+    // 若壁纸已加载完成直接显示，否则等加载完再显示
+    if (wallpaper.complete) {
+      doShow();
+    } else {
+      wallpaper.onload = doShow;
+      wallpaper.onerror = doShow; // 加载失败也继续
+    }
   }
 
   // 启动完成后跳转登录页
