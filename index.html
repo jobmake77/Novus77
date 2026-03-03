@@ -40,32 +40,12 @@
 
   <!-- ========== 登录屏幕 ========== -->
   <div id="login-screen" style="display:none;">
-    <!-- 顶部横幅 -->
     <div class="login-header">
-      <div class="login-header-left">
-        <div class="login-winlogo">
-          <div class="lw-quad red"></div><div class="lw-quad green"></div>
-          <div class="lw-quad blue"></div><div class="lw-quad yellow"></div>
-        </div>
-        <div class="login-wintext">
-          <span class="login-win-thin">Microsoft</span>
-          <span class="login-win-bold">Windows<span class="login-win-xp">XP</span></span>
-        </div>
-      </div>
+      <div class="login-header-center"><span>欢迎使用</span></div>
     </div>
-
-    <!-- 中间主体 -->
     <div class="login-body">
-      <!-- 左侧说明 -->
-      <div class="login-left">
-        <p>请单击您的用户名以登录</p>
-      </div>
-
-      <!-- 分隔线 -->
-      <div class="login-divider"></div>
-
-      <!-- 右侧用户列表 -->
-      <div class="login-right">
+      <div class="login-instruction">请选择您的用户帐户开始使用</div>
+      <div class="login-users">
         <div class="login-user" id="login-btn">
           <div class="login-avatar">
             <img src="assets/images/avatar.png" alt="Novus77"
@@ -74,21 +54,14 @@
           </div>
           <div class="login-user-info">
             <div class="login-username">Novus77</div>
+            <div class="login-user-sub">个人网站</div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- 底部横幅 -->
     <div class="login-footer">
       <div class="login-footer-btn" onclick="handleShutdown()">
-        <div class="login-shutdown-icon">⏻</div>
-        <div>
-          <div class="login-footer-btn-title">关闭计算机</div>
-        </div>
-      </div>
-      <div class="login-footer-right">
-        开始之后，您的个人设置和桌面文件都会用于您的帐户。
+        <span>⏻</span> 关闭计算机
       </div>
     </div>
   </div>
