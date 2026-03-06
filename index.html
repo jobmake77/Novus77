@@ -40,28 +40,48 @@
 
   <!-- ========== 登录屏幕 ========== -->
   <div id="login-screen" style="display:none;">
-    <div class="login-header">
-      <div class="login-header-center"><span>欢迎使用</span></div>
-    </div>
-    <div class="login-body">
-      <div class="login-instruction">请选择您的用户帐户开始使用</div>
-      <div class="login-users">
-        <div class="login-user" id="login-btn">
-          <div class="login-avatar">
-            <img src="assets/images/avatar.png" alt="Novus77"
-              onerror="this.style.display='none'" />
-            <span class="avatar-letter">N</span>
+    <div class="login-top-bar"></div>
+    <div class="login-main">
+      <div class="login-content">
+        <div class="login-left">
+          <div class="login-logo-container">
+            <div class="xp-flag">
+              <div class="flag-segment red"></div>
+              <div class="flag-segment green"></div>
+              <div class="flag-segment blue"></div>
+              <div class="flag-segment yellow"></div>
+            </div>
+            <div class="login-branding">
+              <h1 class="brand-name">Novus77<span class="brand-xp">XP</span></h1>
+              <p class="brand-subtitle">个人作品集</p>
+            </div>
           </div>
-          <div class="login-user-info">
-            <div class="login-username">Novus77</div>
-            <div class="login-user-sub">个人网站</div>
+          <p class="login-instruction">点击 Novus77 开始登录</p>
+        </div>
+        <div class="login-right">
+          <div class="user-card" id="login-btn">
+            <div class="user-avatar">
+              <img src="assets/images/avatar.png" alt="Novus77" onerror="this.style.display='none'" />
+              <span class="avatar-letter">N</span>
+            </div>
+            <div class="user-info">
+              <div class="user-name">Novus77</div>
+              <div class="user-role">开发者 & 设计师</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="login-footer">
-      <div class="login-footer-btn" onclick="handleShutdown()">
-        <span>⏻</span> 关闭计算机
+    <div class="login-bottom-bar">
+      <div class="login-restart" onclick="handleShutdown()">
+        <svg class="restart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+        </svg>
+        <span>重启 Novus77 XP</span>
+      </div>
+      <div class="login-footer-text">
+        <p>登录后，系统将为您呈现完整的作品集。</p>
+        <p>每个细节都经过精心设计。</p>
       </div>
     </div>
   </div>

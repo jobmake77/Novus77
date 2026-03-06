@@ -71,51 +71,229 @@ html, body {
 #login-screen {
   position: fixed; inset: 0;
   display: flex; flex-direction: column;
-  background: #1e4d8c; z-index: 9998;
+  background: linear-gradient(180deg, #5b8dd6 0%, #4a7bc4 100%);
+  z-index: 9998;
 }
-.login-header {
-  height: 96px;
-  background: linear-gradient(180deg, #3a6dc4 0%, #1e4d8c 100%);
-  border-bottom: 3px solid #0831a0;
-  display: flex; align-items: center; justify-content: center;
+
+/* 顶部深蓝色条 */
+.login-top-bar {
+  height: 80px;
+  background: linear-gradient(180deg, #1e3a8a 0%, #1e40af 100%);
 }
-.login-header-center {
-  color: #fff; font-size: 28px; font-weight: bold;
-  font-family: 'Franklin Gothic Medium', Arial, sans-serif; letter-spacing: 2px;
+
+/* 主要内容区域 */
+.login-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
 }
-.login-body {
-  flex: 1; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 28px;
+
+.login-content {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+  max-width: 1200px;
 }
-.login-instruction { color: #fff; font-size: 13px; opacity: 0.9; }
-.login-user {
-  display: flex; align-items: center; gap: 14px;
-  padding: 12px 24px; border-radius: 4px; cursor: pointer;
-  transition: background 0.15s;
+
+/* 左侧：Logo 和品牌 */
+.login-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
 }
-.login-user:hover { background: rgba(255,255,255,0.15); }
-.login-avatar {
-  width: 64px; height: 64px; border-radius: 50%;
-  border: 3px solid #fff; overflow: hidden;
-  background: #3a7bd5; display: flex; align-items: center;
-  justify-content: center; position: relative;
+
+.login-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
-.login-avatar img { width: 100%; height: 100%; object-fit: cover; position: absolute; }
-.avatar-letter { color: #fff; font-size: 28px; font-weight: bold; z-index: 1; }
-.login-username { color: #fff; font-size: 16px; font-weight: bold; }
-.login-user-sub { color: rgba(255,255,255,0.7); font-size: 11px; margin-top: 2px; }
-.login-footer {
-  height: 52px;
-  background: linear-gradient(180deg, #2a5dac 0%, #1e4d8c 100%);
-  border-top: 3px solid #0831a0;
-  display: flex; align-items: center; padding: 0 24px;
+
+.xp-flag {
+  width: 80px;
+  height: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  transform: perspective(400px) rotateY(-15deg);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
-.login-footer-btn {
-  display: flex; align-items: center; gap: 8px;
-  color: #fff; font-size: 12px; cursor: pointer;
-  padding: 4px 10px; border-radius: 3px; transition: background 0.15s;
+
+.flag-segment {
+  border-radius: 3px;
 }
-.login-footer-btn:hover { background: rgba(255,255,255,0.2); }
+
+.flag-segment.red {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+}
+
+.flag-segment.green {
+  background: linear-gradient(135deg, #7cb342 0%, #9ccc65 100%);
+}
+
+.flag-segment.blue {
+  background: linear-gradient(135deg, #1e88e5 0%, #42a5f5 100%);
+}
+
+.flag-segment.yellow {
+  background: linear-gradient(135deg, #fdd835 0%, #ffeb3b 100%);
+}
+
+.login-branding {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brand-name {
+  font-size: 48px;
+  font-weight: 300;
+  color: #fff;
+  margin: 0;
+  font-family: 'Franklin Gothic Medium', 'Trebuchet MS', Arial, sans-serif;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.brand-xp {
+  font-weight: 700;
+  color: #ff6b35;
+  font-style: italic;
+  margin-left: 4px;
+}
+
+.brand-subtitle {
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.login-instruction {
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  opacity: 0.95;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* 右侧：用户卡片 */
+.login-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.user-card:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+.user-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 6px;
+  border: 3px solid rgba(255,255,255,0.8);
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+}
+
+.avatar-letter {
+  color: #fff;
+  font-size: 32px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.user-name {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.user-role {
+  color: rgba(255,255,255,0.85);
+  font-size: 12px;
+}
+
+/* 底部栏 */
+.login-bottom-bar {
+  height: 80px;
+  background: linear-gradient(180deg, #1e3a8a 0%, #1e40af 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+}
+
+.login-restart {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.login-restart:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.restart-icon {
+  color: #7cb342;
+}
+
+.login-footer-text {
+  text-align: right;
+  color: rgba(255,255,255,0.8);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.login-footer-text p {
+  margin: 0;
+}
 
 /* ══════════════════════════════════════════
    桌面 — Bliss 壁纸（CSS 近似）
