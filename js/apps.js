@@ -66,7 +66,7 @@ const DATA = {
 
   resume: {
     name:    'Novus77',
-    contact: 'hello@novus77.com  |  novus77.com  |  GitHub: Novus77',
+    contact: '1432680433@qq.com  |  novus77.me  |  GitHub: github.com/jobmake77  |  X: @novus771',
     sections: [
       {
         title: '个人简介',
@@ -108,10 +108,12 @@ const DATA = {
 
   contact: {
     items: [
-      { icon: '✉️', label: '邮箱',   value: '<a href="mailto:hello@novus77.com">hello@novus77.com</a>' },
-      { icon: '🐙', label: 'GitHub', value: '<a href="https://github.com" target="_blank">github.com/Novus77</a>' },
-      { icon: '🐦', label: 'Twitter/X', value: '<a href="https://x.com" target="_blank">@Novus77</a>' },
-      { icon: '🌐', label: '网站',   value: '<a href="https://novus77.com" target="_blank">novus77.com</a>' },
+      { icon: '✉️', label: '邮箱', value: '<a href="mailto:1432680433@qq.com">1432680433@qq.com</a>' },
+      { icon: '🐙', label: 'GitHub', value: '<a href="https://github.com/jobmake77" target="_blank" rel="noreferrer">github.com/jobmake77</a>' },
+      { icon: '🐦', label: 'Twitter/X', value: '<a href="https://x.com/novus771" target="_blank" rel="noreferrer">@novus771</a>' },
+      { icon: '🌐', label: '个人网站', value: '<a href="https://novus77.me" target="_blank" rel="noreferrer">novus77.me</a>' },
+      { icon: '📍', label: '所在地', value: '中国' },
+      { icon: '⏱️', label: '回复时间', value: '通常 24 小时内回复' },
     ],
   },
 };
