@@ -2,10 +2,22 @@
 (function () {
   const BOOT_DURATION  = 3000;  // 启动动画时长 ms
   const LOGIN_DURATION = 500;   // 淡入登录屏幕
+  const startupSound = new Audio('assets/sounds/windows-xp-startup.mp3');
+  let hasPlayedStartupSound = false;
 
   // 预加载壁纸
   const wallpaper = new Image();
   wallpaper.src = 'assets/images/windows XP.jpg';
+  startupSound.preload = 'auto';
+
+  function playStartupSound() {
+    if (hasPlayedStartupSound) return;
+    hasPlayedStartupSound = true;
+    startupSound.currentTime = 0;
+    startupSound.play().catch(() => {
+      // Some browsers may still block playback even after a click.
+    });
+  }
 
   function showLogin() {
     const boot  = document.getElementById('boot-screen');
@@ -22,6 +34,8 @@
   function showDesktop() {
     const login   = document.getElementById('login-screen');
     const desktop = document.getElementById('desktop');
+
+    playStartupSound();
 
     function doShow() {
       login.classList.add('fade-out');
