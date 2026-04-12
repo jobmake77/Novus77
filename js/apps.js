@@ -64,6 +64,46 @@ const DATA = {
     },
   ],
 
+  notes: {
+    title: 'Novus77 的文档',
+    intro: '这里用来收纳我的日常随笔、灵感片段和最近在思考的事情。像是 XP 时代的“我的文档”，但里面装的是更私人的数字纸张。',
+    entries: [
+      {
+        id: 'note-01',
+        title: '凌晨两点的灵感备忘',
+        date: '2026-04-10',
+        summary: '关于为什么我想把网站做成一台真的“电脑”。',
+        content: [
+          '最近越来越觉得，作品集不应该只是把项目一块一块摆出来，它更像一个人长期使用过的桌面。',
+          '我想让别人打开这个网站时，感觉像是进入了我的工作台，而不是浏览一张排版工整的海报。',
+          'Windows XP 这种熟悉感特别有意思，它有一点复古，也有一点温度，像小时候第一次觉得“电脑很神奇”的那个瞬间。'
+        ]
+      },
+      {
+        id: 'note-02',
+        title: '今天想记录下来的小事',
+        date: '2026-04-07',
+        summary: '关于节奏、做事方式，还有一点点日常。',
+        content: [
+          '写代码的时候，我越来越在意节奏感。不是一味做得快，而是让每一步都自然地接到下一步。',
+          '有时候一个页面看起来已经完成了，但总觉得少一点情绪。这个时候我更愿意停下来，想想是不是还差一处细节、一段声音，或者一种进入方式。',
+          '可能这也是我喜欢做前端的原因，功能之外，界面其实也在表达一个人的审美和性格。'
+        ]
+      },
+      {
+        id: 'note-03',
+        title: '给未来自己的一个提醒',
+        date: '2026-04-01',
+        summary: '继续保持表达，别只顾着完成任务。',
+        content: [
+          '如果一个项目只是“做完了”，那它往往很快就会被忘记。',
+          '但如果一个项目里留下了自己的判断、偏好和情绪，它就会慢慢长成真正有辨识度的东西。',
+          '以后做网站也好，写文档也好，都记得让它保留一点属于自己的气味。'
+        ]
+      }
+    ]
+  },
+
   resume: {
     name:    'Novus77',
     contact: '1432680433@qq.com  |  novus77.me  |  GitHub: github.com/jobmake77  |  X: @novus771',
@@ -124,12 +164,101 @@ const DATA = {
 window.openWindow = function (id) {
   switch (id) {
     case 'about':   openAbout();   break;
+    case 'notes':   openNotes();   break;
     case 'projects':openProjects();break;
     case 'resume':  openResume();  break;
     case 'contact': openContact(); break;
     case 'music':   openMusic();   break;
     case 'recycle': openRecycle(); break;
   }
+};
+
+/* ================================================
+   我的文档
+   ================================================ */
+function openNotes() {
+  const notes = DATA.notes.entries;
+  const initialNote = notes[0];
+  const listHtml = notes.map((note, index) => `
+    <div class="notes-list-item${index === 0 ? ' active' : ''}" onclick="showNoteEntry('${note.id}')">
+      <div class="notes-list-icon">📄</div>
+      <div class="notes-list-text">
+        <div class="notes-list-title">${note.title}</div>
+        <div class="notes-list-meta">${note.date}</div>
+        <div class="notes-list-summary">${note.summary}</div>
+      </div>
+    </div>`).join('');
+
+  const content = `
+    <div class="notes-shell">
+      <div class="notes-sidebar">
+        <div class="notes-sidebar-header">我的文档</div>
+        <div class="notes-sidebar-intro">${DATA.notes.intro}</div>
+        <div class="notes-list" id="notes-list">${listHtml}</div>
+      </div>
+      <div class="notes-reader" id="notes-reader">
+        ${renderNoteEntry(initialNote)}
+      </div>
+    </div>`;
+
+  WM.create({
+    id: 'notes', title: '我的文档', icon: '📄',
+    width: 760, height: 500, content,
+    menubar: `<span class="xp-menu-item">文件</span><span class="xp-menu-item">编辑</span><span class="xp-menu-item">收藏</span><span class="xp-menu-item">帮助</span>`,
+    toolbar: `
+      <button class="xp-toolbar-btn" onclick="showFirstNote()">📄 打开首页</button>
+      <div class="xp-toolbar-sep"></div>
+      <button class="xp-toolbar-btn">🖊️ 随笔</button>`,
+    addressbar: `
+      <span class="xp-addressbar-label">地址</span>
+      <input class="xp-addressbar-input" value="C:\\Users\\Novus77\\My Documents\\Essays" readonly>`,
+    statusbar: `<div class="xp-statusbar-panel">${notes.length} 篇文档</div>`,
+  });
+}
+
+function renderNoteEntry(note) {
+  if (!note) {
+    return `
+      <div class="notes-empty">
+        <div class="notes-empty-icon">📄</div>
+        <div>暂时还没有文档内容。</div>
+      </div>`;
+  }
+
+  return `
+    <div class="notes-page">
+      <div class="notes-page-topbar">
+        <div class="notes-page-path">我的文档\\随笔集</div>
+        <div class="notes-page-date">${note.date}</div>
+      </div>
+      <div class="notes-paper">
+        <div class="notes-paper-pin"></div>
+        <div class="notes-paper-title">${note.title}</div>
+        <div class="notes-paper-summary">${note.summary}</div>
+        <div class="notes-paper-body">
+          ${note.content.map(paragraph => `<p>${paragraph}</p>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+window.showNoteEntry = function (noteId) {
+  const note = DATA.notes.entries.find(entry => entry.id === noteId);
+  const reader = document.getElementById('notes-reader');
+  if (!reader) return;
+
+  document.querySelectorAll('.notes-list-item').forEach(item =>
+    item.classList.remove('active'));
+  document.querySelector(`.notes-list-item[onclick="showNoteEntry('${noteId}')"]`)
+    ?.classList.add('active');
+
+  reader.innerHTML = renderNoteEntry(note);
+};
+
+window.showFirstNote = function () {
+  const firstNote = DATA.notes.entries[0];
+  if (!firstNote) return;
+  window.showNoteEntry(firstNote.id);
 };
 
 /* ================================================

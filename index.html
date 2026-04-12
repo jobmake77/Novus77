@@ -91,6 +91,10 @@
         <img src="assets/icons/mycomputer.png" alt="关于我" />
         <span>关于我</span>
       </div>
+      <div class="desktop-icon" ondblclick="openWindow('notes')">
+        <img src="assets/icons/document.png" alt="我的文档" />
+        <span>我的文档</span>
+      </div>
       <div class="desktop-icon" ondblclick="openWindow('projects')">
         <img src="assets/icons/folder.png" alt="我的项目" />
         <span>我的项目</span>
@@ -138,6 +142,10 @@
             <span class="sm-icon">🖥️</span>
             <span class="sm-label">关于我</span>
           </div>
+          <div class="sm-item sm-pinned" onclick="openWindow('notes');toggleStartMenu()">
+            <span class="sm-icon">📄</span>
+            <span class="sm-label">我的文档</span>
+          </div>
           <div class="sm-item sm-pinned" onclick="openWindow('projects');toggleStartMenu()">
             <span class="sm-icon">📁</span>
             <span class="sm-label">我的项目</span>
@@ -153,7 +161,7 @@
           </div>
         </div>
         <div class="sm-right">
-          <div class="sm-right-item"><span>📁</span> 我的文档</div>
+          <div class="sm-right-item" onclick="openWindow('notes');toggleStartMenu()"><span>📁</span> 我的文档</div>
           <div class="sm-right-item"><span>🖼️</span> 我的图片</div>
           <div class="sm-right-item"><span>🎵</span> 我的音乐</div>
           <div class="sm-right-divider"></div>
